@@ -214,7 +214,7 @@ class _PageTwoState extends State<PageTwo> {
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Snackbar dari Halaman 2 #hatihatimrj'),
+                    content: Text('Snackbar dari Halaman 2 #HATIHATIMZF'),
                   ),
                 );
               },
