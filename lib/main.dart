@@ -21,7 +21,52 @@ class MyApp extends StatelessWidget {
           bodyText2: TextStyle(color: Colors.black54),
         ),
       ),
-      home: const HomePage(),
+      home: const MainPage(), // Ganti dengan MainPage
+    );
+  }
+}
+
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  int _selectedIndex = 0;
+
+  // List untuk menyimpan halaman yang akan ditampilkan
+  final List<Widget> _pages = [
+    const HomePage(),
+    const PageTwo(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _pages[_selectedIndex], // Menampilkan halaman berdasarkan index
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Halaman 1',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.pageview),
+            label: 'Halaman 2',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blueAccent,
+        onTap: _onItemTapped,
+      ),
     );
   }
 }
@@ -94,24 +139,6 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               child: const Text('Tampilkan Dialog'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const PageTwo()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.lightBlue,
-                padding: const EdgeInsets.symmetric(vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: const Text('Ke Halaman 2',
-                  style: TextStyle(color: Colors.white)),
             ),
           ],
         ),
